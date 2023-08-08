@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Змінено імпорт
 import { fetchApi } from '../../services/fetchApi';
+import { Container, TrendingMoviesList } from './HomeStyled';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -17,16 +18,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h2>Trending Movies</h2>
-      <ul>
+      <TrendingMoviesList>
         {trendingMovies.map(movie => (
           <li key={movie.id}>
             <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
-      </ul>
-    </div>
+      </TrendingMoviesList>
+    </Container>
   );
 };
 

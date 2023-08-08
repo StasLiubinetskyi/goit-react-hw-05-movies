@@ -1,19 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Nav, NavList, NavItem, NavLink } from './LayoutStyled';
 
 const Layout = ({ children }) => {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-        </ul>
-      </nav>
+      <Nav>
+        <NavList>
+          <NavItem>
+            <NavLink to="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/movies">Movies</NavLink>
+          </NavItem>
+        </NavList>
+      </Nav>
       {children}
     </div>
   );

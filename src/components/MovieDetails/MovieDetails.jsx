@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
+import Cast from '../Cast/Cast';
+import Reviews from '../Reviews/Reviews';
+import {
+  Container,
+  Content,
+  MoviePoster,
+  MovieText,
+  ToggleButtons,
+  Overview,
+  StyledButton,
+} from './MovieDetailsStyled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
+  const [showCast, setShowCast] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
 
   useEffect(() => {
     fetchApi
@@ -24,15 +37,30 @@ const MovieDetails = () => {
   };
 
   return (
-    <div>
-      <h2>Movie Details</h2>
-      <Link to="/movies">Go back</Link> <h3>{movieDetails.title}</h3>
-      <img
-        src={compilePosterURL(movieDetails.poster_path)}
-        alt={movieDetails.title}
-      />
-      <p>{movieDetails.overview}</p>
-    </div>
+    <Container>
+      <Link to="/movies">Go back</Link>
+      <Content>
+        <MoviePoster
+          src={compilePosterURL(movieDetails.poster_path)}
+          alt={movieDetails.title}
+        />
+        <MovieText>
+          <h2>{movieDetails.title}</h2>
+          <p>User Score: {movieDetails.vote_average}</p>
+          <Overview>{movieDetails.overview}</Overview>
+        </MovieText>
+      </Content>
+
+      <ToggleButtons>
+        <StyledButton onClick={() => setShowCast(!showCast)}>Cast</StyledButton>
+        <StyledButton onClick={() => setShowReviews(!showReviews)}>
+          Reviews
+        </StyledButton>
+      </ToggleButtons>
+
+      {showCast && <Cast movieId={movieId} />}
+      {showReviews && <Reviews movieId={movieId} />}
+    </Container>
   );
 };
 
