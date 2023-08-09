@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Змінено імпорт
+import { Link as ReactRouterLink } from 'react-router-dom'; // Змінено імпорт і перейменовано на ReactRouterLink
 import { fetchApi } from '../../services/fetchApi';
-import { Container, TrendingMoviesList } from './HomeStyled';
+import { Container, TrendingMoviesList, StyledLink } from './HomeStyled'; // Залишено StyledLink
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -23,7 +23,9 @@ const Home = () => {
       <TrendingMoviesList>
         {trendingMovies.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <StyledLink as={ReactRouterLink} to={`/movies/${movie.id}`}>
+              {movie.title}
+            </StyledLink>
           </li>
         ))}
       </TrendingMoviesList>

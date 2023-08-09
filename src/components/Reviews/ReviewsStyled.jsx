@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 0px;
+  padding: 20px;
 `;
 
 export const ReviewList = styled.ul`
@@ -11,19 +11,15 @@ export const ReviewList = styled.ul`
 
 export const ReviewItem = styled.li`
   border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
+  margin-bottom: 10px;
 `;
 
-export const Author = styled.h3`
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
+export const Author = styled.h4`
+  margin: 0 0 5px;
 `;
 
 export const Content = styled.p`
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 1.5;
+  margin: 0;
 `;

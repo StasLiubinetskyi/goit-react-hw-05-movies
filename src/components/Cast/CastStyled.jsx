@@ -1,50 +1,43 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 0px;
+  padding: 20px;
 `;
 
 export const CastList = styled.ul`
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 20px;
   padding: 0;
-  margin: 0;
 `;
 
-export const Actor = styled.li`
-  text-align: center;
-  font-size: 14px;
+export const StyledActor = styled.li`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
 `;
 
 export const ActorImage = styled.img`
-  display: block;
-  width: 50%;
-  height: 100%;
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
 `;
 
-export const Character = styled.span`
-  display: block;
-  font-size: 12px;
-  color: #666;
-  margin-top: 5px;
+export const ActorName = styled.h3`
+  margin: 0;
+  font-size: 18px;
+  color: #333;
 `;
 
-export const StyledActor = styled(Actor)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const StyledCharacter = styled.p`
+  margin: 0;
+  color: #777;
 `;
 
-export const ActorName = styled.span`
-  display: center;
+export const CharacterText = styled.span`
   font-weight: bold;
-  margin-top: 10px;
-`;
-
-export const StyledCharacter = styled(Character)`
-  font-size: 12px;
-  color: #666;
-  margin-top: 5px;
+  color: #333;
 `;

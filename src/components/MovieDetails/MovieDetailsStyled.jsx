@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -23,10 +24,6 @@ export const MovieText = styled.div`
 
 export const ToggleButtons = styled.div`
   margin-bottom: 20px;
-
-  button {
-    margin-right: 10px;
-  }
 `;
 
 export const Overview = styled.p`
@@ -35,17 +32,11 @@ export const Overview = styled.p`
   color: #333;
 `;
 
-export const Genres = styled.p`
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #333;
-`;
-
-export const StyledButton = styled.button`
+export const StyledLink = styled(Link)`
   padding: 5px 10px;
   background-color: #007bff;
   color: white;
+  text-decoration: none;
   border: none;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -53,4 +44,8 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+export const AdditionalInfo = styled.div`
+  margin-top: 20px;
 `;

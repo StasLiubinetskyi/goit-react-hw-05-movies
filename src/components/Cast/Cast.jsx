@@ -8,6 +8,7 @@ import {
   ActorImage,
   ActorName,
   StyledCharacter,
+  CharacterText,
 } from './CastStyled';
 
 const Cast = () => {
@@ -24,13 +25,12 @@ const Cast = () => {
         console.error('Error fetching cast:', error);
       });
   }, [movieId]);
-  
 
   return (
     <Container>
       <CastList>
-        {cast.map(actor => (
-          <StyledActor key={actor.id}>
+        {cast.map((actor, index) => (
+          <StyledActor key={`${actor.id}-${index}`}>
             <ActorImage
               src={
                 actor.profile_path
@@ -39,8 +39,12 @@ const Cast = () => {
               }
               alt={actor.name}
             />
-            <ActorName>{actor.name}</ActorName>
-            <StyledCharacter>Character: {actor.character}</StyledCharacter>
+            <div>
+              <ActorName>{actor.name}</ActorName>
+              <StyledCharacter>
+                <CharacterText>Character:</CharacterText> {actor.character}
+              </StyledCharacter>
+            </div>
           </StyledActor>
         ))}
       </CastList>

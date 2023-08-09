@@ -50,9 +50,9 @@ const Movies = () => {
       <MoviesList>
         {searchResults.map(movie => (
           <li key={movie.id}>
-            <button onClick={() => handleMovieClick(movie.id)}>
+            <StyledButton onClick={() => handleMovieClick(movie.id)}>
               {movie.title}
-            </button>
+            </StyledButton>
           </li>
         ))}
       </MoviesList>

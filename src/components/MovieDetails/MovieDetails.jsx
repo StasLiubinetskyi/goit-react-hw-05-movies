@@ -8,6 +8,8 @@ import {
   MovieText,
   ToggleButtons,
   Overview,
+  StyledLink,
+  AdditionalInfo,
 } from './MovieDetailsStyled';
 
 const MovieDetails = () => {
@@ -48,9 +50,15 @@ const MovieDetails = () => {
         </MovieText>
       </Content>
 
+      <AdditionalInfo>
+        <h3>Additional Information</h3>
+      </AdditionalInfo>
+
       <ToggleButtons>
-        <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-        <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+        {' '}
+        {/* Перемістіть блок з кнопками сюди */}
+        <StyledLink to={`/movies/${movieId}/cast`}>Cast</StyledLink>
+        <StyledLink to={`/movies/${movieId}/reviews`}>Reviews</StyledLink>
       </ToggleButtons>
     </Container>
   );

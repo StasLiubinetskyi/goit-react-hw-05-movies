@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-
   padding: 20px;
 `;
 
@@ -12,8 +10,17 @@ export const TrendingMoviesList = styled.ul`
   padding: 0;
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(Link)`
+  display: block;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #007bff;
+  color: white;
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
