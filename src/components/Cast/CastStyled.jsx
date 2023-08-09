@@ -19,9 +19,9 @@ export const Actor = styled.li`
 `;
 
 export const ActorImage = styled.img`
+  display: block;
   width: 50%;
-  height: auto;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
 `;
 
 export const Character = styled.span`
@@ -38,6 +38,7 @@ export const StyledActor = styled(Actor)`
 `;
 
 export const ActorName = styled.span`
+  display: center;
   font-weight: bold;
   margin-top: 10px;
 `;

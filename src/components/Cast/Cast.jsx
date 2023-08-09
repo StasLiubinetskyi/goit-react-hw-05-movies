@@ -24,6 +24,7 @@ const Cast = () => {
         console.error('Error fetching cast:', error);
       });
   }, [movieId]);
+  
 
   return (
     <Container>
@@ -34,7 +35,7 @@ const Cast = () => {
               src={
                 actor.profile_path
                   ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                  : '/placeholder.jpg'
+                  : 'https://www.njca.com.au/wp-content/uploads/2023/03/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'
               }
               alt={actor.name}
             />

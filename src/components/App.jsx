@@ -8,7 +8,7 @@ const Movies = React.lazy(() => import('./Movies/Movies'));
 const MovieDetails = React.lazy(() => import('./MovieDetails/MovieDetails'));
 const Cast = React.lazy(() => import('./Cast/Cast'));
 const Reviews = React.lazy(() => import('./Reviews/Reviews'));
-const NotFound = React.lazy(() => import('./NotFound/NotFound'));
+
 
 export const App = () => {
   return (
@@ -22,7 +22,6 @@ export const App = () => {
               <Route path="/movies/:movieId" element={<MovieDetails />} />
               <Route path="/movies/:movieId/cast" element={<Cast />} />
               <Route path="/movies/:movieId/reviews" element={<Reviews />} />
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
         </Suspense>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import {
   Container,
@@ -9,7 +9,7 @@ import {
 } from './MoviesStyled';
 
 const Movies = () => {
-  const location = useLocation();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -24,6 +24,16 @@ const Movies = () => {
       });
   };
 
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleMovieClick = movieId => {
+    navigate(`/movies/${movieId}`);
+  };
+
   return (
     <Container>
       <h2>Search Movies</h2>
@@ -33,14 +43,16 @@ const Movies = () => {
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           placeholder="Search for movies..."
+          onKeyPress={handleKeyPress}
         />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </SearchWrapper>
-      {location.pathname !== '/movies' && <Link to="/movies">Go back</Link>}
       <MoviesList>
         {searchResults.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <button onClick={() => handleMovieClick(movie.id)}>
+              {movie.title}
+            </button>
           </li>
         ))}
       </MoviesList>
