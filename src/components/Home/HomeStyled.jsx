@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+
+
 export const Container = styled.div`
   padding: 20px;
+  display: block;
+  width: auto;
+  max-width: 768px;
+  margin: 0;
 `;
+
 
 export const TrendingMoviesList = styled.ul`
   list-style: none;

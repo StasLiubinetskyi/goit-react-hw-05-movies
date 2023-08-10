@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  display: flex;
+  display: block;
   flex-direction: column;
   padding: 20px;
 `;
 
 export const Content = styled.div`
   display: flex;
+  margin-top: 20px;
   align-items: flex-start;
   margin-bottom: 20px;
 `;
@@ -50,4 +51,19 @@ export const StyledLink = styled(Link)`
 
 export const AdditionalInfo = styled.div`
   margin-top: 20px;
+`;
+
+export const GoBackLink = styled(Link)`
+  padding: 5px 10px;
+  background-color: #007bff;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;

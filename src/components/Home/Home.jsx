@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom'; // Змінено імпорт і перейменовано на ReactRouterLink
+import { Link as ReactRouterLink } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
-import { Container, TrendingMoviesList, StyledLink } from './HomeStyled'; // Залишено StyledLink
+import { Container, TrendingMoviesList, StyledLink } from './HomeStyled'; 
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);

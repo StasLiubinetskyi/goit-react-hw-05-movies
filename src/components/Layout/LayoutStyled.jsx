@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Nav = styled.nav`
   background-color: #333;
-  padding: 10px 0;
+  padding: 20px 0;
 `;
 
 export const NavList = styled.ul`

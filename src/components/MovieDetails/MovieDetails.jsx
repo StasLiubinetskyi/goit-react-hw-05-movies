@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import {
   Container,
@@ -10,6 +10,7 @@ import {
   Overview,
   StyledLink,
   AdditionalInfo,
+  GoBackLink,
 } from './MovieDetailsStyled';
 
 const MovieDetails = () => {
@@ -35,9 +36,7 @@ const MovieDetails = () => {
 
   return (
     <Container>
-      <Link to="/movies" style={{ marginBottom: '20px' }}>
-        Go back
-      </Link>
+      <GoBackLink to="/movies">&lt; Go back</GoBackLink>
       <Content>
         <MoviePoster
           src={compilePosterURL(movieDetails.poster_path)}
@@ -55,7 +54,6 @@ const MovieDetails = () => {
       </AdditionalInfo>
 
       <ToggleButtons>
-        {' '}
         <StyledLink to={`/movies/${movieId}/cast`}>Cast</StyledLink>
         <StyledLink to={`/movies/${movieId}/reviews`}>Reviews</StyledLink>
       </ToggleButtons>
