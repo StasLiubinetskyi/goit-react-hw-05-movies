@@ -56,7 +56,6 @@ const MovieDetails = () => {
 
       <ToggleButtons>
         {' '}
-        {/* Перемістіть блок з кнопками сюди */}
         <StyledLink to={`/movies/${movieId}/cast`}>Cast</StyledLink>
         <StyledLink to={`/movies/${movieId}/reviews`}>Reviews</StyledLink>
       </ToggleButtons>
