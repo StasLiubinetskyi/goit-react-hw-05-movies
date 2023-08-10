@@ -5,7 +5,6 @@ export const Container = styled.div`
 `;
 
 export const SearchWrapper = styled.div`
-  display: flex;
   margin-bottom: 20px;
 
   input {
@@ -27,8 +26,9 @@ export const MoviesList = styled.ul`
 `;
 
 export const StyledButton = styled.button`
-  padding: 5px 10px;
+  padding: 8px 10px;
   background-color: #007bff;
+  border-radius: 5px;
   color: white;
   border: none;
   cursor: pointer;

@@ -33,8 +33,10 @@ export const Overview = styled.p`
 `;
 
 export const StyledLink = styled(Link)`
+  margin-right: 10px;
   padding: 5px 10px;
   background-color: #007bff;
+  border-radius: 5px;
   color: white;
   text-decoration: none;
   border: none;

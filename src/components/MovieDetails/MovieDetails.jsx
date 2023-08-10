@@ -51,7 +51,7 @@ const MovieDetails = () => {
       </Content>
 
       <AdditionalInfo>
-        <h3>Additional Information</h3>
+        <h3>Additional Information:</h3>
       </AdditionalInfo>
 
       <ToggleButtons>

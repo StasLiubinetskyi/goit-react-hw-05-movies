@@ -9,12 +9,12 @@ export const Nav = styled.nav`
 export const NavList = styled.ul`
   list-style: none;
   display: flex;
-  justify-content: center;
+
   padding: 0;
 `;
 
 export const NavItem = styled.li`
-  margin: 0 15px;
+  margin: 0 25px;
 `;
 
 export const NavLink = styled(Link)`
