@@ -20,7 +20,7 @@ export const NavItem = styled.li`
 export const NavLink = styled(Link)`
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 25px;
   transition: color 0.2s;
 
   &:hover {
