@@ -1,3 +1,4 @@
+// MovieDetailsStyled.js
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -25,12 +26,6 @@ export const MovieText = styled.div`
 
 export const ToggleButtons = styled.div`
   margin-bottom: 20px;
-`;
-
-export const Overview = styled.p`
-  font-size: 16px;
-  margin-top: 10px;
-  color: #333;
 `;
 
 export const StyledLink = styled(Link)`
@@ -66,4 +61,23 @@ export const GoBackLink = styled(Link)`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+export const OverviewContainer = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 50px;
+`;
+
+export const GenreContainer = styled.div`
+  font-size: 16px;
+  margin-top: 50px;
+`;
+
+export const Label = styled.span`
+  font-weight: bold;
+`;
+
+export const GenreList = styled.span`
+  font-weight: normal;
 `;

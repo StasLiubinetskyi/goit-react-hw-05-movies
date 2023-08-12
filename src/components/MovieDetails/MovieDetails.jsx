@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom'; // Додано useNavigate
+import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchApi } from '../../services/fetchApi';
 import {
   Container,
@@ -7,7 +8,10 @@ import {
   MoviePoster,
   MovieText,
   ToggleButtons,
-  Overview,
+  OverviewContainer,
+  GenreContainer,
+  Label,
+  GenreList,
   StyledLink,
   AdditionalInfo,
   GoBackLink,
@@ -16,6 +20,7 @@ import {
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
+  const [releaseDate, setReleaseDate] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,6 +29,8 @@ const MovieDetails = () => {
       .getMovieDetails(movieId)
       .then(response => {
         setMovieDetails(response.data);
+        // Assuming the release date is available as a separate property in response.data
+        setReleaseDate(response.data.release_date);
       })
       .catch(error => {
         console.error('Error fetching movie details:', error);
@@ -41,7 +48,7 @@ const MovieDetails = () => {
     location.pathname.endsWith('/reviews');
 
   const handleGoBack = () => {
-    navigate(-1); // Повернення на попередню сторінку
+    navigate(-1);
   };
 
   return (
@@ -53,9 +60,23 @@ const MovieDetails = () => {
           alt={movieDetails.title}
         />
         <MovieText>
-          <h2>{movieDetails.title}</h2>
-          <p>User Score: {movieDetails.vote_average}</p>
-          <Overview>{movieDetails.overview}</Overview>
+          <h2>
+            {movieDetails.title}
+            {releaseDate && ` (${releaseDate.substring(0, 4)})`}
+          </h2>
+          <p>User Score: {Math.round(movieDetails.vote_average * 10)}%</p>
+          <OverviewContainer>
+            <Label>Overview: </Label>
+            <GenreList>{movieDetails.overview}</GenreList>
+          </OverviewContainer>
+          <GenreContainer>
+            <Label>Genres: </Label>
+            <GenreList>
+              {movieDetails.genres?.map((genre, index) =>
+                index === 0 ? genre.name : `, ${genre.name}`
+              )}
+            </GenreList>
+          </GenreContainer>
         </MovieText>
       </Content>
 
@@ -64,13 +85,17 @@ const MovieDetails = () => {
       </AdditionalInfo>
 
       <ToggleButtons>
-        <StyledLink to={`/movies/${movieId}/cast`}>Cast</StyledLink>
-        <StyledLink to={`/movies/${movieId}/reviews`}>Reviews</StyledLink>
+        <StyledLink to={`/movies/${movieId}/cast`}>Cast:</StyledLink>
+        <StyledLink to={`/movies/${movieId}/reviews`}>Reviews:</StyledLink>
       </ToggleButtons>
 
       {shouldDisplayCastReviews && <Outlet />}
     </Container>
   );
+};
+
+MovieDetails.propTypes = {
+  movieId: PropTypes.string.isRequired,
 };
 
 export default MovieDetails;

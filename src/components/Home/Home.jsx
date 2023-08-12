@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <Container>
-      <h2>Trending Movies</h2>
+      <h2>Trending Movies:</h2>
       <TrendingMoviesList>
         {trendingMovies.map(movie => (
           <li key={movie.id}>
