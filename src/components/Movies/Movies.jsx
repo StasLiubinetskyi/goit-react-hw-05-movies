@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import {
   Container,
@@ -10,10 +10,15 @@ import {
 
 const Movies = () => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const initialQuery = searchParams.get('query') || '';
+
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = () => {
+    navigate(`/movies?query=${searchQuery}`);
     fetchApi
       .searchMovies(searchQuery)
       .then(response => {

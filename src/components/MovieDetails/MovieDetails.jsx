@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom'; // Додано useNavigate
 import { fetchApi } from '../../services/fetchApi';
 import {
   Container,
@@ -17,6 +17,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchApi
@@ -39,9 +40,13 @@ const MovieDetails = () => {
     location.pathname.endsWith('/cast') ||
     location.pathname.endsWith('/reviews');
 
+  const handleGoBack = () => {
+    navigate(-1); // Повернення на попередню сторінку
+  };
+
   return (
     <Container>
-      <GoBackLink to="/movies">&lt; Go back</GoBackLink>
+      <GoBackLink onClick={handleGoBack}>Go back</GoBackLink>
       <Content>
         <MoviePoster
           src={compilePosterURL(movieDetails.poster_path)}
