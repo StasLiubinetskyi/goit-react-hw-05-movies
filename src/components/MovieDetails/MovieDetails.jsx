@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { fetchApi } from '../../services/fetchApi';
 import {
   Container,
@@ -92,10 +91,6 @@ const MovieDetails = () => {
       {shouldDisplayCastReviews && <Outlet />}
     </Container>
   );
-};
-
-MovieDetails.propTypes = {
-  movieId: PropTypes.string.isRequired,
 };
 
 export default MovieDetails;
