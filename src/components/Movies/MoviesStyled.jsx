@@ -41,3 +41,9 @@ export const StyledButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 20px;
+`;

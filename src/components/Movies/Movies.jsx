@@ -6,6 +6,7 @@ import {
   SearchWrapper,
   MoviesList,
   StyledButton,
+  ErrorMessage,
 } from './MoviesStyled';
 
 const Movies = () => {
@@ -16,13 +17,19 @@ const Movies = () => {
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [searchResults, setSearchResults] = useState([]);
+  const [showError, setShowError] = useState(false);
 
   const handleSearch = () => {
     navigate(`/movies?query=${searchQuery}`);
     fetchApi
       .searchMovies(searchQuery)
       .then(response => {
-        setSearchResults(response.data.results);
+        if (response.data.results.length === 0) {
+          setShowError(true);
+        } else {
+          setSearchResults(response.data.results);
+          setShowError(false);
+        }
       })
       .catch(error => {
         console.error('Error searching movies:', error);
@@ -52,6 +59,13 @@ const Movies = () => {
         />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </SearchWrapper>
+
+      {showError && (
+        <ErrorMessage>
+          No movies found for "{searchQuery}". Please try again.
+        </ErrorMessage>
+      )}
+
       <MoviesList>
         {searchResults.map(movie => (
           <li key={movie.id}>
