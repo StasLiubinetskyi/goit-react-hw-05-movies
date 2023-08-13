@@ -28,7 +28,6 @@ const MovieDetails = () => {
       .getMovieDetails(movieId)
       .then(response => {
         setMovieDetails(response.data);
-        // Assuming the release date is available as a separate property in response.data
         setReleaseDate(response.data.release_date);
       })
       .catch(error => {

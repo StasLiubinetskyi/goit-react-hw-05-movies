@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
-import PropTypes from 'prop-types'; // Додано PropTypes
+
 import {
   Container,
   CastList,
@@ -53,15 +53,5 @@ const Cast = () => {
   );
 };
 
-Cast.propTypes = {
-  cast: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      profile_path: PropTypes.string,
-      name: PropTypes.string.isRequired,
-      character: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
 
 export default Cast;
