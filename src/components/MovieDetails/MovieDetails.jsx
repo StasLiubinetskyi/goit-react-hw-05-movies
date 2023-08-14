@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
+import PropTypes from 'prop-types';
 import {
   Container,
   Content,
@@ -94,6 +95,15 @@ const MovieDetails = () => {
       {shouldDisplayCastReviews && <Outlet />}
     </Container>
   );
+};
+
+MovieDetails.propTypes = {
+  urlImg: PropTypes.string,
+  title: PropTypes.string,
+  releaseDate: PropTypes.number,
+  voteAverage: PropTypes.number,
+  overview: PropTypes.string,
+  genres: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default MovieDetails;

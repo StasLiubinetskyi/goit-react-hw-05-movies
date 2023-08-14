@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
+import PropTypes from 'prop-types';
 import {
   Container,
   SearchWrapper,
@@ -96,6 +97,11 @@ const Movies = () => {
       </MoviesList>
     </Container>
   );
+};
+
+Movies.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object),
+  location: PropTypes.object,
 };
 
 export default Movies;

@@ -3,6 +3,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import { Container, TrendingMoviesList, StyledLink } from './HomeStyled'; 
 
+
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
@@ -32,5 +33,7 @@ const Home = () => {
     </Container>
   );
 };
+
+
 
 export default Home;
