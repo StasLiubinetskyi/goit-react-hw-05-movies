@@ -29,26 +29,30 @@ const Cast = () => {
 
   return (
     <Container>
-      <CastList>
-        {cast.map((actor, index) => (
-          <StyledActor key={`${actor.id}-${index}`}>
-            <ActorImage
-              src={
-                actor.profile_path
-                  ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                  : 'https://www.njca.com.au/wp-content/uploads/2023/03/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'
-              }
-              alt={actor.name}
-            />
-            <div>
-              <ActorName>{actor.name}</ActorName>
-              <StyledCharacter>
-                <CharacterText>Character:</CharacterText> {actor.character}
-              </StyledCharacter>
-            </div>
-          </StyledActor>
-        ))}
-      </CastList>
+      {cast.length === 0 ? (
+        <p>We don't have any cast information for this movie.</p>
+      ) : (
+        <CastList>
+          {cast.map((actor, index) => (
+            <StyledActor key={`${actor.id}-${index}`}>
+              <ActorImage
+                src={
+                  actor.profile_path
+                    ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                    : 'https://www.njca.com.au/wp-content/uploads/2023/03/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'
+                }
+                alt={actor.name}
+              />
+              <div>
+                <ActorName>{actor.name}</ActorName>
+                <StyledCharacter>
+                  <CharacterText>Character:</CharacterText> {actor.character}
+                </StyledCharacter>
+              </div>
+            </StyledActor>
+          ))}
+        </CastList>
+      )}
     </Container>
   );
 };
