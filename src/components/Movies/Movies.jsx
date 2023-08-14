@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import {
@@ -36,15 +36,30 @@ const Movies = () => {
       });
   };
 
-  const handleKeyPress = event => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
   const handleMovieClick = movieId => {
     navigate(`/movies/${movieId}`);
   };
+
+  useEffect(() => {
+    if (searchQuery) {
+      fetchApi
+        .searchMovies(searchQuery)
+        .then(response => {
+          if (response.data.results.length === 0) {
+            setShowError(true);
+          } else {
+            setSearchResults(response.data.results);
+            setShowError(false);
+          }
+        })
+        .catch(error => {
+          console.error('Error searching movies:', error);
+        });
+    } else {
+      setSearchResults([]);
+      setShowError(false);
+    }
+  }, [searchQuery]);
 
   return (
     <Container>
@@ -55,12 +70,16 @@ const Movies = () => {
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           placeholder="Search for movies..."
-          onKeyPress={handleKeyPress}
+          onKeyPress={event => {
+            if (event.key === 'Enter') {
+              handleSearch();
+            }
+          }}
         />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </SearchWrapper>
 
-      {showError && (
+      {showError && searchQuery && (
         <ErrorMessage>
           No movies found for "{searchQuery}". Please try again.
         </ErrorMessage>
