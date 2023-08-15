@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Nav = styled.nav`
@@ -9,7 +9,6 @@ export const Nav = styled.nav`
 export const NavList = styled.ul`
   list-style: none;
   display: flex;
-
   padding: 0;
 `;
 
@@ -22,6 +21,12 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   font-size: 25px;
   transition: color 0.2s;
+
+  ${props =>
+    props.isActive &&
+    css`
+      text-decoration: underline;
+    `}
 
   &:hover {
     color: #ccc;
