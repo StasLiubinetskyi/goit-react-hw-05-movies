@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
   background-color: #333;
@@ -16,17 +16,16 @@ export const NavItem = styled.li`
   margin: 0 25px;
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(RouterNavLink)`
   color: white;
   text-decoration: none;
   font-size: 25px;
   transition: color 0.2s;
 
-  ${props =>
-    props.isActive &&
-    css`
-      text-decoration: underline;
-    `}
+  &.active {
+    color: #ccc;
+    text-decoration: underline;
+  }
 
   &:hover {
     color: #ccc;
