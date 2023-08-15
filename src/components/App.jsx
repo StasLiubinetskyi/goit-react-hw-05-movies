@@ -13,7 +13,7 @@ const Reviews = React.lazy(() => import('./Reviews/Reviews'));
 export const App = () => {
   return (
     <div>
-      <Router basename="/goit-react-hw-05-movies">
+      <Router>
         <Suspense fallback={<LoadingSpinner />}>
           <Layout>
             <Routes>
