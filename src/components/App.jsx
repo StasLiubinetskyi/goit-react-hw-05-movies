@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LoadingSpinner from './Loading/LoadingSpinner';
 
 const Layout = React.lazy(() => import('./Layout/Layout'));
@@ -13,22 +13,20 @@ const NotFound = React.lazy(() => import('./NotFound/NotFound'));
 export const App = () => {
   return (
     <div>
-      <Router>
-        <Suspense fallback={<LoadingSpinner />}>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Layout />}></Route>
-              <Route index element={<Home />} />
-              <Route path="movies" element={<Movies />} />
-              <Route path="movies/:movieId" element={<MovieDetails />}>
-                <Route path="cast" element={<Cast />} />
-                <Route path="reviews" element={<Reviews />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
-        </Suspense>
-      </Router>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Layout />}></Route>
+            <Route index element={<Home />} />
+            <Route path="movies" element={<Movies />} />
+            <Route path="movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </Suspense>
     </div>
   );
 };
