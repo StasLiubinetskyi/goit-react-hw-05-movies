@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import PropTypes from 'prop-types';
@@ -41,27 +41,6 @@ const Movies = () => {
     navigate(`/movies/${movieId}`);
   };
 
-  useEffect(() => {
-    if (searchQuery) {
-      fetchApi
-        .searchMovies(searchQuery)
-        .then(response => {
-          if (response.data.results.length === 0) {
-            setShowError(true);
-          } else {
-            setSearchResults(response.data.results);
-            setShowError(false);
-          }
-        })
-        .catch(error => {
-          console.error('Error searching movies:', error);
-        });
-    } else {
-      setSearchResults([]);
-      setShowError(false);
-    }
-  }, [searchQuery]);
-
   return (
     <Container>
       <h2>Search Movies</h2>
@@ -86,15 +65,17 @@ const Movies = () => {
         </ErrorMessage>
       )}
 
-      <MoviesList>
-        {searchResults.map(movie => (
-          <li key={movie.id}>
-            <StyledButton onClick={() => handleMovieClick(movie.id)}>
-              {movie.title}
-            </StyledButton>
-          </li>
-        ))}
-      </MoviesList>
+      {searchResults.length > 0 && (
+        <MoviesList>
+          {searchResults.map(movie => (
+            <li key={movie.id}>
+              <StyledButton onClick={() => handleMovieClick(movie.id)}>
+                {movie.title}
+              </StyledButton>
+            </li>
+          ))}
+        </MoviesList>
+      )}
     </Container>
   );
 };
