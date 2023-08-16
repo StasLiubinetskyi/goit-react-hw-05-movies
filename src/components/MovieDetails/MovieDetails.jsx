@@ -80,10 +80,10 @@ const MovieDetails = () => {
 
       <ToggleButtons>
         <StyledLink to={`/movies/${movieId}/cast${location.search}`}>
-          Cast:
+          Cast
         </StyledLink>
         <StyledLink to={`/movies/${movieId}/reviews${location.search}`}>
-          Reviews:
+          Reviews
         </StyledLink>
       </ToggleButtons>
 

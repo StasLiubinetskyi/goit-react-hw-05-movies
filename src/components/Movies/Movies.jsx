@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import PropTypes from 'prop-types';
 import {
@@ -11,8 +11,8 @@ import {
 } from './MoviesStyled';
 
 const Movies = () => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const initialQuery = searchParams.get('query') || '';
 
@@ -21,7 +21,9 @@ const Movies = () => {
   const [showError, setShowError] = useState(false);
 
   const handleSearch = () => {
-    navigate(`/movies?query=${searchQuery}`);
+    const newSearch = `?query=${searchQuery}`;
+    navigate(newSearch);
+
     fetchApi
       .searchMovies(searchQuery)
       .then(response => {
@@ -38,7 +40,8 @@ const Movies = () => {
   };
 
   const handleMovieClick = movieId => {
-    navigate(`/movies/${movieId}`);
+    const newPath = `/movies/${movieId}`;
+    navigate(newPath);
   };
 
   return (
