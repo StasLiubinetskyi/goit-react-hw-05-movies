@@ -22,7 +22,8 @@ const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const [releaseDate, setReleaseDate] = useState('');
   const location = useLocation();
-  const fromPath = location.state?.from || '/';
+  
+  const backLinkHref = location.state?.from || '/';
 
   useEffect(() => {
     fetchApi
@@ -48,7 +49,7 @@ const MovieDetails = () => {
 
   return (
     <Container>
-      <GoBackLink to={fromPath}>Go back</GoBackLink>
+      <GoBackLink to={backLinkHref}>Go back</GoBackLink>
       <Content>
         <MoviePoster
           src={compilePosterURL(movieDetails.poster_path)}
@@ -82,13 +83,13 @@ const MovieDetails = () => {
       <ToggleButtons>
         <StyledLink
           to={`/movies/${movieId}/cast${location.search}`}
-          state={{ from: location.state?.from }}
+          state={{ from: backLinkHref }}
         >
           Cast
         </StyledLink>
         <StyledLink
           to={`/movies/${movieId}/reviews${location.search}`}
-          state={{ from: location.state?.from }}
+          state={{ from: backLinkHref }}
         >
           Reviews
         </StyledLink>
