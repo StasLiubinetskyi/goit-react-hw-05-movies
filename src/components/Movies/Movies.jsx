@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
 import {
@@ -12,8 +12,7 @@ import {
 const Movies = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const searchParams = new URLSearchParams(location.search);
-  const initialQuery = searchParams.get('query') || '';
+  const initialQuery = new URLSearchParams(location.search).get('query') || '';
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [searchResults, setSearchResults] = useState([]);
@@ -22,26 +21,29 @@ const Movies = () => {
   const handleSearch = () => {
     const newSearch = `?query=${searchQuery}`;
     navigate(newSearch);
-
-    fetchApi
-      .searchMovies(searchQuery)
-      .then(response => {
-        if (response.data.results.length === 0) {
-          setShowError(true);
-        } else {
-          setSearchResults(response.data.results);
-          setShowError(false);
-        }
-      })
-      .catch(error => {
-        console.error('Error searching movies:', error);
-      });
   };
 
   const handleMovieClick = movieId => {
     const newPath = `/movies/${movieId}`;
     navigate(newPath, { state: { from: location } });
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const queryFromUrl = searchParams.get('query') || '';
+    setSearchQuery(queryFromUrl);
+
+    fetchApi
+      .searchMovies(queryFromUrl)
+      .then(response => {
+        setSearchResults(response.data.results);
+        setShowError(response.data.results.length === 0 && queryFromUrl !== '');
+      })
+      .catch(error => {
+        console.error('Error searching movies:', error);
+        setShowError(true);
+      });
+  }, [location.search]);
 
   return (
     <Container>
