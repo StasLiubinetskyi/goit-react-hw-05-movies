@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { fetchApi } from '../../services/fetchApi';
-import PropTypes from 'prop-types';
 import {
   Container,
   Content,
@@ -22,7 +21,7 @@ const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const [releaseDate, setReleaseDate] = useState('');
   const location = useLocation();
-  
+
   const backLinkHref = location.state?.from || '/';
 
   useEffect(() => {
@@ -98,15 +97,6 @@ const MovieDetails = () => {
       {shouldDisplayCastReviews && <Outlet />}
     </Container>
   );
-};
-
-MovieDetails.propTypes = {
-  urlImg: PropTypes.string,
-  title: PropTypes.string,
-  releaseDate: PropTypes.number,
-  voteAverage: PropTypes.number,
-  overview: PropTypes.string,
-  genres: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default MovieDetails;
