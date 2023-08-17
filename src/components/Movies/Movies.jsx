@@ -40,7 +40,7 @@ const Movies = () => {
 
   const handleMovieClick = movieId => {
     const newPath = `/movies/${movieId}`;
-    navigate(newPath);
+    navigate(newPath, { state: { from: location } });
   };
 
   return (
