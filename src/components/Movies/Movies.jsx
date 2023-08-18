@@ -18,7 +18,8 @@ const Movies = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showError, setShowError] = useState(false);
 
-  const handleSearch = () => {
+  const handleSearch = event => {
+    event.preventDefault();
     const newSearch = `?query=${searchQuery}`;
     navigate(newSearch);
   };
@@ -49,18 +50,15 @@ const Movies = () => {
     <Container>
       <h2>Search Movies</h2>
       <SearchWrapper>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-          placeholder="Search for movies..."
-          onKeyPress={event => {
-            if (event.key === 'Enter') {
-              handleSearch();
-            }
-          }}
-        />
-        <StyledButton onClick={handleSearch}>Search</StyledButton>
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            placeholder="Search for movies..."
+          />
+          <StyledButton type="submit">Search</StyledButton>
+        </form>
       </SearchWrapper>
 
       {showError && searchQuery && (
